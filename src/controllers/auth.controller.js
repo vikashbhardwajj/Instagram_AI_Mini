@@ -8,7 +8,7 @@ const SALT_ROUNDS = 10;
 const registerController = async (req, res) => {
   const { username, password } = req.body;
 
-  const user = await userModel.findOne({ username });
+  const user = await userModel.findOne({ username: username });
   if (user) {
     return res.status(400).json({ message: "User already exists" });
   }
