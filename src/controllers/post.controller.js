@@ -13,8 +13,6 @@ const createPostController = async (req, res) => {
     message: "File received successfully",
     caption,
   });
-
-  //   const base64ImageFile = file.buffer.toString("base64");
 };
 
 module.exports = {
