@@ -8,8 +8,13 @@ const createPostController = async (req, res) => {
 
   const base64ImageFile = file.buffer.toString("base64");
 
-  const caption = await generateCaption(base64ImageFile);
-  const result = await uploadImage(file.buffer, `${uuidv4()}`);
+  // const caption = await generateCaption(base64ImageFile);
+  // const result = await uploadImage(file.buffer, `${uuidv4()}`);
+
+  const [caption, result] = await Promise.all([
+    generateCaption(base64ImageFile),
+    uploadImage(file.buffer, `${uuidv4()}`),
+  ]);
 
   const post = await postModel.create({
     image: result.url,
